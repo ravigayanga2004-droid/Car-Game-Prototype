@@ -1,6 +1,17 @@
 node_modules/
 dist/
 shots/
+# Local configuration, logs, and generated verification output
+.env
+.env.*
+!.env.example
+*.log
+coverage/
+playwright-report/
+test-results/
+*.tsbuildinfo
+# Rebuild from src/sim with pnpm build:server
+server/lib/
 /.manus-webdev/preview-identity.json
 server/node_modules
 .agent-notes.md
@@ -40,6 +51,9 @@ assets/src-3d/*
 /assets/share/canyon-charge-og.png
 /assets/share/favicon.png
 /assets/share/og.png
+# Sharing inputs must be available in a fresh Git checkout
+!/assets/share/canyon-charge-og.png
+!/assets/share/favicon.png
 /assets/src-3d/arroyo-v1.glb
 /assets/src-3d/arroyo.glb
 /assets/src-3d/boulder.glb

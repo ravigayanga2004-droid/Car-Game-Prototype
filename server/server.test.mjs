@@ -2,6 +2,7 @@
 import { test, before, after } from 'node:test'
 import assert from 'node:assert/strict'
 import { spawn } from 'node:child_process'
+import { fileURLToPath } from 'node:url'
 import { WebSocket } from 'ws'
 import { RaceSim, Track, CANYON_CIRCUIT, idleInput, packInput, unpackInput, carCheck, PROTOCOL } from './lib/sim.mjs'
 
@@ -9,8 +10,9 @@ let proc
 let port
 
 async function startServer(env = {}) {
-  const child = spawn(process.execPath, ['ghost_server.mjs'], { cwd: new URL('.', import.meta.url).pathname, env: { ...process.env, PORT: '0', HOST: '127.0.0.1', ALLOWED_ORIGINS: 'https://game.example', ...env }, stdio: ['ignore', 'pipe', 'inherit'] })
+  const child = spawn(process.execPath, ['ghost_server.mjs'], { cwd: fileURLToPath(new URL('.', import.meta.url)), env: { ...process.env, PORT: '0', HOST: '127.0.0.1', ALLOWED_ORIGINS: 'https://game.example', ...env }, stdio: ['ignore', 'pipe', 'inherit'] })
   const p = await new Promise((resolve, reject) => {
+    child.once('error', reject)
     child.stdout.on('data', d => {
       const line = d.toString().split('\n').find(l => l.includes('listening'))
       if (line) resolve(JSON.parse(line).port)

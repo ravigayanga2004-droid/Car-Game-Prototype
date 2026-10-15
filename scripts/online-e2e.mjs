@@ -2,6 +2,7 @@
 // node scripts/online-e2e.mjs [gameUrl] [--delay=60] [--full]
 import { chromium } from 'playwright'
 import { spawn } from 'node:child_process'
+import { fileURLToPath } from 'node:url'
 import net from 'node:net'
 import { mkdirSync } from 'node:fs'
 
@@ -12,7 +13,7 @@ const real = process.argv.includes('--real')
 const out = '/tmp/cc-online'
 mkdirSync(out, { recursive: true })
 
-const server = spawn(process.execPath, ['ghost_server.mjs'], { cwd: new URL('../server/', import.meta.url).pathname, env: { ...process.env, PORT: '0', HOST: '127.0.0.1' }, stdio: ['ignore', 'pipe', 'inherit'] })
+const server = spawn(process.execPath, ['ghost_server.mjs'], { cwd: fileURLToPath(new URL('../server/', import.meta.url)), env: { ...process.env, PORT: '0', HOST: '127.0.0.1' }, stdio: ['ignore', 'pipe', 'inherit'] })
 const serverPort = await new Promise(resolve => server.stdout.on('data', d => { const l = d.toString().split('\n').find(x => x.includes('listening')); if (l) resolve(JSON.parse(l).port) }))
 // One-way `delay` ms each direction => RTT ≈ 2 × delay.
 const proxy = net.createServer(client => {

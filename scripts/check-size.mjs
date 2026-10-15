@@ -2,7 +2,7 @@
 // to load on mobile networks. JS/CSS are measured gzipped (what the CDN sends); fonts are already
 // compressed woff2 and budgeted separately because CJK coverage is large.
 import { readdirSync, readFileSync, statSync } from 'node:fs'
-import { join } from 'node:path'
+import { join, sep } from 'node:path'
 import { gzipSync } from 'node:zlib'
 
 const MB = 1024 * 1024
@@ -19,7 +19,7 @@ const walk = dir => readdirSync(dir).flatMap(name => {
 const files = walk('dist').map(path => {
   const raw = readFileSync(path)
   const text = /\.(js|css|html|json|svg)$/.test(path)
-  return { path, size: raw.length, wire: text ? gzipSync(raw).length : raw.length }
+  return { path: path.split(sep).join('/'), size: raw.length, wire: text ? gzipSync(raw).length : raw.length }
 })
 const sum = pred => files.filter(pred).reduce((n, f) => n + f.wire, 0)
 const js = sum(f => f.path.endsWith('.js'))
