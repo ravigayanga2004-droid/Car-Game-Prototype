@@ -1,0 +1,12 @@
+{
+  "schemaVersion": 2,
+  "title": "Canyon Charge",
+  "description": "Collect glowing Power Cells through a vast sunlit canyon in a fast low-poly arcade racer, then spend stored charges on a high-impact boost. Race AI rivals, battle a friend in split-screen, build tracks in Track Lab, or chase online ghosts.",
+  "defaultCaptions": {
+    "x": "Collect Power Cells mid-race, bank up to three charges, and spend them on a gold Power Boost through a giant sunlit canyon. Play Canyon Charge in your browser.",
+    "facebook": "Canyon Charge is a fast low-poly arcade racer: collect Power Cells during three-lap races, then spend stored charges for a high-impact boost. Race AI rivals, a friend in split-screen, or online ghosts.",
+    "reddit": "Canyon Charge — a browser arcade racer with Power Cells, stored boost charges, drift lines, ramps and fair counterplay items. Solo, split-screen, Track Lab and online ghosts.",
+    "discord": "Race me in Canyon Charge! Collect Power Cells, bank three charges, and fire a Power Boost through the canyon."
+  },
+  "assets": { "og": "assets/share/canyon-charge-og.png", "favicon": "assets/share/favicon.png" }
+}

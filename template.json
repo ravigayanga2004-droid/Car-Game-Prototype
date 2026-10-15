@@ -1,0 +1,11 @@
+{
+  "id": "game-3d",
+  "kind": "game",
+  "engine": "threejs",
+  "status": "draft",
+  "name": "3D Game Template (three.js)",
+  "description": "A three.js + Rapier browser 3D game foundation: fixed-step loop, unified keyboard/gamepad/touch input, physics helpers, quality tiers, audio buses, versioned saves and bilingual HTML/CSS game UI, with a complete third-person sky-islands collection game as the reference.",
+  "capabilities": [
+    "static"
+  ]
+}
