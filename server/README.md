@@ -1,4 +1,4 @@
-# Canyon Circuit ghost race service
+# Canyon Charge ghost race service
 
 Authoritative Node service for **Online Ghosts** (protocol `canyon-ghost-v1`). It owns rooms, seats,
 race start, deterministic re-simulation of every racer's uploaded inputs, ghost broadcast and results.
@@ -8,6 +8,8 @@ ghosts never feed back into the owner's simulation.
 - Node 22+, pinned pnpm dependencies: `pnpm install --frozen-lockfile --prod`.
 - `lib/sim.mjs` is generated from `src/sim/` with `pnpm build:server` in the game project. Always redeploy it
   together with the matching client build — both sides must run the identical simulation.
+- The generated bundle is ignored by Git. From a fresh checkout, install root and server dependencies,
+  then run `pnpm build:server` from the root before `pnpm test:server` or starting the service.
 - Run: `HOST=127.0.0.1 PORT=8791 ALLOWED_ORIGINS=https://published.origin node ghost_server.mjs`.
 - `ALLOWED_ORIGINS` is a comma-separated list of exact browser origins. Origin checks are not authentication.
 - `GET /healthz` reports availability. `/ws?build=canyon-ghost-v1[&room=CODE][&resume=TOKEN]` connects.
